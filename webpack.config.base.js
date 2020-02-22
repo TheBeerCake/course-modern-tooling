@@ -11,10 +11,17 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/,
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: [["@babel/preset-env", {
+              targets: [
+                  "last 2 versions",
+                  "not dead",
+                  "not < 2%" ,
+              ],
+              useBuiltIns: "entry"
+          }], '@babel/preset-react'],
           plugins: [
               "@babel/plugin-proposal-class-properties",
               "react-hot-loader/babel"
@@ -29,6 +36,6 @@ module.exports = {
     ]
   },
   plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html'
+    template: "./src/index.html"
   })]
 }
